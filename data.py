@@ -8,20 +8,20 @@ people_data = {
        "siblings": [],
        "spouse": "Cornelia Emmersohn"
    },
-   "Mary": {
-       "name": "Mary",
-       "birth_date": "1975-02-02",
+   "Cornelia Emmersohn": {
+       "name": "Cornelia Emmersohn",
+       "birth_date": "1972-02-02",
        "death_date": None,
        "parents": [],
-       "children": ["Alice"],
+       "children": ["Joy Emmersohn"],
        "siblings": [],
-       "spouse": "John"
+       "spouse": "Otto Emmersohn"
    },
-   "Alice": {
-       "name": "Alice",
+   "Joy Emmersohn": {
+       "name": "Joy Emmersohn",
        "birth_date": "1995-03-03",
        "death_date": None,
-       "parents": ["John", "Mary"],
+       "parents": ["Otto Emmersohn", "Cornelia Emmersohn"],
        "children": [],
        "siblings": [],
        "spouse": None
