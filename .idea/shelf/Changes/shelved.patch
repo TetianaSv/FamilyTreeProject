@@ -1,0 +1,178 @@
+Index: main.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from data import people_data\r\n\r\nclass Person:\r\n    def __init__(self, name, birth_date=None, death_date=None,):\r\n        self.name = name\r\n        self.birth_date = birth_date\r\n        self.death_date = death_date\r\n        self.parents = []\r\n        self.children = []\r\n        self.spouse = None\r\n\r\n    def add_parent(self, parent):\r\n        if parent not in self.parents:\r\n            self.parents.append(parent)\r\n            parent.children.append(self)\r\n\r\n    def add_child(self, child):\r\n        if child not in self.children:\r\n            self.children.append(child)\r\n            child.parents.append(self)\r\n\r\n    def add_sibling(self, sibling):\r\n        if sibling not in self.siblings:\r\n            self.siblings.append(sibling)\r\n            sibling.siblings.append(self)\r\n\r\n    def set_spouse(self, spouse):\r\n        self.spouse = spouse\r\n        spouse.spouse = self\r\n\r\n    def get_immediate_family(self):\r\n        return {\r\n            \"parents\": self.parents,\r\n            \"siblings\": self.siblings,\r\n            \"spouse\": self.spouse,\r\n            \"children\": self.children\r\n        }\r\n\r\n    def add_person(name, birth_date=None, death_date=None):\r\n        \"\"\"Add new person\"\"\"\r\n        if name in people_data:\r\n            print(f\"Person with name {name} already created.\")\r\n            return\r\n        people_data[name] = {\r\n            \"name\": name,\r\n            \"birth_date\": birth_date,\r\n            \"death_date\": death_date,\r\n            \"parents\": [],\r\n            \"children\": [],\r\n            \"siblings\": [],\r\n            \"spouse\": None\r\n        }\r\n\r\n    def add_relationship(person_name, relation, relative_name):\r\n        \"\"\"Function to connect people\"\"\"\r\n        if person_name not in people_data or relative_name not in people_data:\r\n            print(\"Один из указанных людей не найден в базе данных.\")\r\n            return\r\n        if relation == \"parent\":\r\n            people_data[person_name][\"parents\"].append(relative_name)\r\n            people_data[relative_name][\"children\"].append(person_name)\r\n        elif relation == \"child\":\r\n            people_data[person_name][\"children\"].append(relative_name)\r\n            people_data[relative_name][\"parents\"].append(person_name)\r\n        elif relation == \"sibling\":\r\n            people_data[person_name][\"siblings\"].append(relative_name)\r\n            people_data[relative_name][\"siblings\"].append(person_name)\r\n        elif relation == \"spouse\":\r\n            people_data[person_name][\"spouse\"] = relative_name\r\n            people_data[relative_name][\"spouse\"] = person_name\r\n        else:\r\n            print(\"Неизвестный тип связи.\")\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/main.py b/main.py
+--- a/main.py	(revision 20ba2f520474af3814eefec112a9c86923b2be0b)
++++ b/main.py	(date 1731337461432)
+@@ -9,64 +9,27 @@
+         self.children = []
+         self.spouse = None
+ 
+-    def add_parent(self, parent):
+-        if parent not in self.parents:
+-            self.parents.append(parent)
+-            parent.children.append(self)
+-
+-    def add_child(self, child):
+-        if child not in self.children:
+-            self.children.append(child)
+-            child.parents.append(self)
++# F1a
++def get_parents(self):
++    """Receive list with parents."""
++    parents = []
++    if self.parentF:
++        parents.append(self.parentF.name)
++    if self.parentM:
++        parents.append(self.parentM.name)
++    return parents or "Parents are unknown"
+ 
+-    def add_sibling(self, sibling):
+-        if sibling not in self.siblings:
+-            self.siblings.append(sibling)
+-            sibling.siblings.append(self)
+-
+-    def set_spouse(self, spouse):
+-        self.spouse = spouse
+-        spouse.spouse = self
+-
+-    def get_immediate_family(self):
+-        return {
+-            "parents": self.parents,
+-            "siblings": self.siblings,
+-            "spouse": self.spouse,
+-            "children": self.children
+-        }
+-
+-    def add_person(name, birth_date=None, death_date=None):
+-        """Add new person"""
+-        if name in people_data:
+-            print(f"Person with name {name} already created.")
+-            return
+-        people_data[name] = {
+-            "name": name,
+-            "birth_date": birth_date,
+-            "death_date": death_date,
+-            "parents": [],
+-            "children": [],
+-            "siblings": [],
+-            "spouse": None
+-        }
+-
+-    def add_relationship(person_name, relation, relative_name):
+-        """Function to connect people"""
+-        if person_name not in people_data or relative_name not in people_data:
+-            print("Один из указанных людей не найден в базе данных.")
+-            return
+-        if relation == "parent":
+-            people_data[person_name]["parents"].append(relative_name)
+-            people_data[relative_name]["children"].append(person_name)
+-        elif relation == "child":
+-            people_data[person_name]["children"].append(relative_name)
+-            people_data[relative_name]["parents"].append(person_name)
+-        elif relation == "sibling":
+-            people_data[person_name]["siblings"].append(relative_name)
+-            people_data[relative_name]["siblings"].append(person_name)
+-        elif relation == "spouse":
+-            people_data[person_name]["spouse"] = relative_name
+-            people_data[relative_name]["spouse"] = person_name
+-        else:
+-            print("Неизвестный тип связи.")
++def get_grandparents(self):
++    """Receive list with grandparents"""
++    grandparents = []
++    if self.parentF:
++        if self.parentF.parentF:
++            grandparents.append(self.parentF.parentF.name)
++        if self.parentF.parentM:
++            grandparents.append(self.parentF.parentM.name)
++    if self.parentM:
++        if self.parentM.parentF:
++            grandparents.append(self.parentM.parentF.name)
++        if self.parentM.parentM:
++            grandparents.append(self.parentM.parentM.name)
++    return grandparents or "Grandparents are unknown"
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"9e5ca50e-22aa-4597-a55f-dcad33b157aa\" name=\"Changes\" comment=\"settings\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/misc.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/misc.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/data.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/data.py\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/main.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/main.py\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Python Script\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;TetianaSv&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\"><![CDATA[{\r\n  \"selectedUrlAndAccountId\": {\r\n    \"url\": \"https://github.com/TetianaSv/FamilyTreeProject.git\",\r\n    \"accountId\": \"434a40f1-5758-4d9a-a7b7-67678b6ddfef\"\r\n  }\r\n}]]></component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 8\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2ohgKbpfnrU08D7516aO1LTimUo\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"Python.main.executor\": \"Run\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"git-widget-placeholder\": \"master\",\r\n    \"last_opened_file_path\": \"G:/COMP1811/FamilyTreeProject\",\r\n    \"settings.editor.selected.configurable\": \"com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"main\" type=\"PythonConfigurationType\" factoryName=\"Python\" nameIsGenerated=\"true\">\r\n      <module name=\"FamilyTreeProject\" />\r\n      <option name=\"ENV_FILES\" value=\"\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/main.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-python-sdk-f5635417b835-31b6be0877a2-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.18968.29\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"9e5ca50e-22aa-4597-a55f-dcad33b157aa\" name=\"Changes\" comment=\"\" />\r\n      <created>1731327158812</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1731327158812</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"First test commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1731327350431</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1731327350431</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"First test commit with files\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1731328142148</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1731328142148</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"main defes\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1731328781561</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1731328781561</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"settings\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1731332033597</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1731332033597</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"settings\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1731332057684</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1731332057684</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"6\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"First test commit\" />\r\n    <MESSAGE value=\"First test commit with files\" />\r\n    <MESSAGE value=\"main defes\" />\r\n    <MESSAGE value=\"settings\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"settings\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <line-breakpoint enabled=\"true\" suspend=\"THREAD\" type=\"python-line\">\r\n          <url>file://$PROJECT_DIR$/data.py</url>\r\n          <option name=\"timeStamp\" value=\"1\" />\r\n        </line-breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 49081616d1828c170983af6d7c26a3c1efbb6e7d)
++++ b/.idea/workspace.xml	(date 1731335347447)
+@@ -5,9 +5,7 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="9e5ca50e-22aa-4597-a55f-dcad33b157aa" name="Changes" comment="settings">
+-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data.py" beforeDir="false" afterPath="$PROJECT_DIR$/data.py" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -31,12 +29,12 @@
+     &quot;assignee&quot;: &quot;TetianaSv&quot;
+   }
+ }</component>
+-  <component name="GithubPullRequestsUISettings"><![CDATA[{
+-  "selectedUrlAndAccountId": {
+-    "url": "https://github.com/TetianaSv/FamilyTreeProject.git",
+-    "accountId": "434a40f1-5758-4d9a-a7b7-67678b6ddfef"
+-  }
+-}]]></component>
++  <component name="GithubPullRequestsUISettings">{
++  &quot;selectedUrlAndAccountId&quot;: {
++    &quot;url&quot;: &quot;https://github.com/TetianaSv/FamilyTreeProject.git&quot;,
++    &quot;accountId&quot;: &quot;434a40f1-5758-4d9a-a7b7-67678b6ddfef&quot;
++  }
++}</component>
+   <component name="ProjectColorInfo">{
+   &quot;associatedIndex&quot;: 8
+ }</component>
+@@ -46,15 +44,15 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "Python.main.executor": "Run",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "git-widget-placeholder": "master",
+-    "last_opened_file_path": "G:/COMP1811/FamilyTreeProject",
+-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;Python.main.executor&quot;: &quot;Run&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
++    &quot;last_opened_file_path&quot;: &quot;G:/COMP1811/FamilyTreeProject&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="RunManager">
+     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+       <module name="FamilyTreeProject" />
+@@ -145,14 +143,4 @@
+     <MESSAGE value="settings" />
+     <option name="LAST_COMMIT_MESSAGE" value="settings" />
+   </component>
+-  <component name="XDebuggerManager">
+-    <breakpoint-manager>
+-      <breakpoints>
+-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+-          <url>file://$PROJECT_DIR$/data.py</url>
+-          <option name="timeStamp" value="1" />
+-        </line-breakpoint>
+-      </breakpoints>
+-    </breakpoint-manager>
+-  </component>
+ </project>
+\ No newline at end of file
