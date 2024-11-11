@@ -11,3 +11,25 @@ class Person:
         if parent not in self.parents:
             self.parents.append(parent)
             parent.children.append(self)
+
+    def add_child(self, child):
+        if child not in self.children:
+            self.children.append(child)
+            child.parents.append(self)
+
+    def add_sibling(self, sibling):
+        if sibling not in self.siblings:
+            self.siblings.append(sibling)
+            sibling.siblings.append(self)
+
+    def set_spouse(self, spouse):
+        self.spouse = spouse
+        spouse.spouse = self
+
+    def get_immediate_family(self):
+        return {
+            "parents": self.parents,
+            "siblings": self.siblings,
+            "spouse": self.spouse,
+            "children": self.children
+        }
