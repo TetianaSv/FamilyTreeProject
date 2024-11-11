@@ -1,10 +1,10 @@
 people_data = {
-   "Otto Emmersohn": {
-       "name": "Otto Emmersohn",
-       "birth_date": "1974-06-05",
-       "death_date": None,
-       "parentF": [""],
-       "parentM": [""],
+"Otto Emmersohn": {
+        "name": "Otto Emmersohn",
+        "birth_date": "1974-06-05",
+        "death_date": None,
+        "parentF": ["Hans Emmersohn"],
+        "parentM": ["Greta Müller"]
 
    },
    "Cornelia Emmersohn": {
@@ -97,6 +97,79 @@ people_data = {
         "parentF": ["Robert Johnson"],
         "parentM": ["Linda Johnson"]
     }
+
+    "Hans Emmersohn": {
+        "name": "Hans Emmersohn",
+        "birth_date": "1945-01-01",
+        "death_date": None,
+        "parentF": ["Friedrich Emmersohn"],
+        "parentM": ["Helga Schmidt"]
+    },
+    "Greta Müller": {
+        "name": "Greta Müller",
+        "birth_date": "1948-01-01",
+        "death_date": None,
+        "parentF": ["Heinrich Müller"],
+        "parentM": ["Anna Müller"]
+    },
+    "Friedrich Emmersohn": {
+        "name": "Friedrich Emmersohn",
+        "birth_date": "1920-01-01",
+        "death_date": None,
+        "parentF": ["Wilhelm Emmersohn"],
+        "parentM": ["Elisabeth Bauer"]
+    },
+    "Helga Schmidt": {
+        "name": "Helga Schmidt",
+        "birth_date": "1925-01-01",
+        "death_date": None,
+        "parentF": ["Karl Schmidt"],
+        "parentM": ["Greta Fischer"]
+    },
+    "Karl Emmersohn": {
+        "name": "Karl Emmersohn",
+        "birth_date": "1950-01-01",
+        "death_date": None,
+        "parentF": ["Friedrich Emmersohn"],
+        "parentM": ["Helga Schmidt"]
+    },
+    "Ingrid Emmersohn": {
+        "name": "Ingrid Emmersohn",
+        "birth_date": "1952-01-01",
+        "death_date": None,
+        "parentF": ["Friedrich Emmersohn"],
+        "parentM": ["Helga Schmidt"]
+    },
+    "Erik Emmersohn": {
+        "name": "Erik Emmersohn",
+        "birth_date": "1980-01-01",
+        "death_date": None,
+        "parentF": ["Karl Emmersohn"],
+        "parentM": ["Ingrid Müller"]
+    },
+    "Anna Emmersohn": {
+        "name": "Anna Emmersohn",
+        "birth_date": "1982-01-01",
+        "death_date": None,
+        "parentF": ["Karl Emmersohn"],
+        "parentM": ["Ingrid Müller"]
+    },
+    "Liesel Emmersohn": {
+        "name": "Liesel Emmersohn",
+        "birth_date": "1970-01-01",
+        "death_date": None,
+        "parentF": ["Hans Emmersohn"],
+        "parentM": ["Greta Müller"]
+    },
+    "Marta Emmersohn": {
+        "name": "Marta Emmersohn",
+        "birth_date": "1972-01-01",
+        "death_date": None,
+        "parentF": ["Hans Emmersohn"],
+        "parentM": ["Greta Müller"]
+    }
+}
+
 }
 
 
