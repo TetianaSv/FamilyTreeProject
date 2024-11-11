@@ -89,6 +89,14 @@ people_data = {
         "parentF": ["Henry White"],
         "parentM": ["Emma White"]
     }
+
+    "Rajesh Johnson": {
+        "name": "Rajesh Johnson",
+        "birth_date": "1953-01-01",
+        "death_date": None,
+        "parentF": ["Robert Johnson"],
+        "parentM": ["Linda Johnson"]
+    }
 }
 
-}
+
