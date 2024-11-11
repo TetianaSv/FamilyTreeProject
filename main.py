@@ -1,3 +1,5 @@
+from data import people_data
+
 class Person:
     def __init__(self, name, birth_date=None, death_date=None,):
         self.name = name

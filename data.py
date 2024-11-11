@@ -1,12 +1,12 @@
 people_data = {
-   "John": {
-       "name": "John",
-       "birth_date": "1970-01-01",
+   "Otto Emmersohn": {
+       "name": "Otto Emmersohn",
+       "birth_date": "1974-06-05",
        "death_date": None,
        "parents": [],
-       "children": ["Alice"],
+       "children": ["Joy Emmersohn"],
        "siblings": [],
-       "spouse": "Mary"
+       "spouse": "Cornelia Emmersohn"
    },
    "Mary": {
        "name": "Mary",
