@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e5ca50e-22aa-4597-a55f-dcad33b157aa" name="Changes" comment="settings">
+    <list default="true" id="9e5ca50e-22aa-4597-a55f-dcad33b157aa" name="Changes" comment="added name for Otto Cornelia and their duaghter joy">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data.py" beforeDir="false" afterPath="$PROJECT_DIR$/data.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,12 +29,12 @@
     &quot;assignee&quot;: &quot;TetianaSv&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/TetianaSv/FamilyTreeProject.git&quot;,
-    &quot;accountId&quot;: &quot;434a40f1-5758-4d9a-a7b7-67678b6ddfef&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/TetianaSv/FamilyTreeProject.git",
+    "accountId": "d731a044-525a-4ffc-a531-6f7c44c88208"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -140,7 +141,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731333935661</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="added name for Otto Cornelia and their duaghter joy">
+      <option name="closed" value="true" />
+      <created>1731334273431</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1731334273431</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -148,6 +157,7 @@
     <MESSAGE value="First test commit with files" />
     <MESSAGE value="main defes" />
     <MESSAGE value="settings" />
-    <option name="LAST_COMMIT_MESSAGE" value="settings" />
+    <MESSAGE value="added name for Otto Cornelia and their duaghter joy" />
+    <option name="LAST_COMMIT_MESSAGE" value="added name for Otto Cornelia and their duaghter joy" />
   </component>
 </project>
