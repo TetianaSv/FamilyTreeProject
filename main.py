@@ -33,3 +33,38 @@ class Person:
             "spouse": self.spouse,
             "children": self.children
         }
+
+    def add_person(name, birth_date=None, death_date=None):
+        """Add new person"""
+        if name in people_data:
+            print(f"Person with name {name} already created.")
+            return
+        people_data[name] = {
+            "name": name,
+            "birth_date": birth_date,
+            "death_date": death_date,
+            "parents": [],
+            "children": [],
+            "siblings": [],
+            "spouse": None
+        }
+
+    def add_relationship(person_name, relation, relative_name):
+        """Function to connect people"""
+        if person_name not in people_data or relative_name not in people_data:
+            print("Один из указанных людей не найден в базе данных.")
+            return
+        if relation == "parent":
+            people_data[person_name]["parents"].append(relative_name)
+            people_data[relative_name]["children"].append(person_name)
+        elif relation == "child":
+            people_data[person_name]["children"].append(relative_name)
+            people_data[relative_name]["parents"].append(person_name)
+        elif relation == "sibling":
+            people_data[person_name]["siblings"].append(relative_name)
+            people_data[relative_name]["siblings"].append(person_name)
+        elif relation == "spouse":
+            people_data[person_name]["spouse"] = relative_name
+            people_data[relative_name]["spouse"] = person_name
+        else:
+            print("Неизвестный тип связи.")
