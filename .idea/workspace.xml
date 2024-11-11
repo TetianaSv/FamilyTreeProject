@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e5ca50e-22aa-4597-a55f-dcad33b157aa" name="Changes" comment="added 10 relitives from cornelias side dod needs to be fixed" />
+    <list default="true" id="9e5ca50e-22aa-4597-a55f-dcad33b157aa" name="Changes" comment="changes">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data.py" beforeDir="false" afterPath="$PROJECT_DIR$/data.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,12 +29,12 @@
     &quot;assignee&quot;: &quot;TetianaSv&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/TetianaSv/FamilyTreeProject.git",
-    "accountId": "d731a044-525a-4ffc-a531-6f7c44c88208"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/TetianaSv/FamilyTreeProject.git&quot;,
+    &quot;accountId&quot;: &quot;d731a044-525a-4ffc-a531-6f7c44c88208&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -41,15 +44,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/uc7373l/OneDrive - University of Greenwich/COMP1811/FamilyTreeProject",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/uc7373l/OneDrive - University of Greenwich/COMP1811/FamilyTreeProject&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="FamilyTreeProject" />
@@ -146,29 +149,29 @@
       <option name="project" value="LOCAL" />
       <updated>1731334273431</updated>
     </task>
-    <task id="LOCAL-00008" summary="changes made to pattern, only names dob dod , parentF, parentM">
+    <task id="LOCAL-00008" summary="changes">
       <option name="closed" value="true" />
-      <created>1731335279047</created>
+      <created>1731337796415</created>
       <option name="number" value="00008" />
       <option name="presentableId" value="LOCAL-00008" />
       <option name="project" value="LOCAL" />
-      <updated>1731335279047</updated>
+      <updated>1731337796415</updated>
     </task>
-    <task id="LOCAL-00009" summary="added 10 relitives from cornelias side dod needs to be fixed">
+    <task id="LOCAL-00009" summary="changes">
       <option name="closed" value="true" />
-      <created>1731336901230</created>
+      <created>1731337802859</created>
       <option name="number" value="00009" />
       <option name="presentableId" value="LOCAL-00009" />
       <option name="project" value="LOCAL" />
-      <updated>1731336901230</updated>
+      <updated>1731337802859</updated>
     </task>
-    <task id="LOCAL-00010" summary="added 10 relitives from cornelias side dod needs to be fixed">
+    <task id="LOCAL-00010" summary="changes">
       <option name="closed" value="true" />
-      <created>1731337053967</created>
+      <created>1731337821227</created>
       <option name="number" value="00010" />
       <option name="presentableId" value="LOCAL-00010" />
       <option name="project" value="LOCAL" />
-      <updated>1731337053967</updated>
+      <updated>1731337821227</updated>
     </task>
     <option name="localTasksCounter" value="11" />
     <servers />
@@ -179,8 +182,7 @@
     <MESSAGE value="main defes" />
     <MESSAGE value="settings" />
     <MESSAGE value="added name for Otto Cornelia and their duaghter joy" />
-    <MESSAGE value="changes made to pattern, only names dob dod , parentF, parentM" />
-    <MESSAGE value="added 10 relitives from cornelias side dod needs to be fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="added 10 relitives from cornelias side dod needs to be fixed" />
+    <MESSAGE value="changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="changes" />
   </component>
 </project>

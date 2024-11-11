@@ -23,8 +23,7 @@ people_data = {
        "parentF": ["Cornelia Emmersohn"],
        "parentM": ["Otto Emmersohn"],
 
-   }
-
+   },
 
     "Thomas Smith": {
         "name": "Thomas Smith",
@@ -88,7 +87,7 @@ people_data = {
         "death_date": None,
         "parentF": ["Henry White"],
         "parentM": ["Emma White"]
-    }
+    },
 
     "Rajesh Johnson": {
         "name": "Rajesh Johnson",
@@ -96,7 +95,7 @@ people_data = {
         "death_date": None,
         "parentF": ["Robert Johnson"],
         "parentM": ["Linda Johnson"]
-    }
+    },
 
     "Hans Emmersohn": {
         "name": "Hans Emmersohn",
@@ -170,6 +169,6 @@ people_data = {
     }
 }
 
-}
+
 
 
