@@ -26,4 +26,17 @@ people_data = {
        "siblings": [],
        "spouse": None
    }
+   "Joy Emmersohn": {
+       "name": "Joy Emmersohn",
+       "birth_date": "1995-03-03",
+       "death_date": None,
+       "parents": ["Otto Emmersohn", "Cornelia Emmersohn"],
+       "children": [],
+       "siblings": [],
+       "spouse": None
+   }
+
+
+
+
 }
