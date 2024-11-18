@@ -1,6 +1,7 @@
 from tkinter import Tk, Label, Entry, Button, Text, END
 from data import people_data
 from datetime import datetime
+from collections import defaultdict
 
 class Person:
 
@@ -202,6 +203,7 @@ class Person:
         return total_age / count if count > 0 else 0
 
 
+
 # Function for searching of relatives
 def search_immediate_family():
 
@@ -292,6 +294,81 @@ def show_average_age_at_death():
        result_text.delete(1.0, END)
        result_text.insert(END, f"Average age at death: {average_age:.2f}\n")
 
+# Adding new method for birthday calendar
+
+def create_birthday_calendar():
+   calendar = defaultdict(list)
+   for person, details in people_data.items():
+       if "birth_date" in details:
+           birth_date = details["birth_date"]
+           # Get month and day
+           month_day = "-".join(birth_date.split("-")[1:])
+           calendar[month_day].append(details["name"])
+   # Преобразуем в упорядоченный словарь
+   sorted_calendar = dict(sorted(calendar.items(), key=lambda x: (int(x[0].split("-")[0]), int(x[0].split("-")[1]))))
+   return sorted_calendar
+
+
+def show_birthday_calendar():
+   calendar = create_birthday_calendar()  # Создаём упорядоченный календарь
+   result_text.delete(1.0, END)  # Очистка текстового поля
+   result_text.insert(END, "Birthday Calendar:\n")
+   for date, people in calendar.items():
+       people_list = ", ".join(people)
+       result_text.insert(END, f"{date}: {people_list}\n")
+
+
+def count_children():
+    children_count = defaultdict(int)
+    for child, details in people_data.items():
+        # Проверяем родителей ребёнка и заменяем None на пустой список
+        fathers = details.get("parentF") or []
+        mothers = details.get("parentM") or []
+
+        # Итерируемся по спискам родителей
+        for father in fathers:
+            children_count[father] += 1
+        for mother in mothers:
+            children_count[mother] += 1
+
+    return dict(children_count)
+
+
+
+def display_children_count():
+
+    children_count = count_children()  # Получаем словарь с подсчётом детей
+
+    result_text.delete(1.0, END)  # Очистка текстового поля
+
+    result_text.insert(END, "Children Count:\n")
+
+    for person, count in children_count.items():
+
+        result_text.insert(END, f"{person}: {count} children\n")
+
+def calculate_average_children():
+
+    children_count = count_children()
+
+    total_people = len(people_data)  # Всего людей в дереве
+
+    total_children = sum(children_count.values())  # Сумма всех детей
+
+    # Защита от деления на 0
+
+    if total_people == 0:
+
+        return 0
+
+    return total_children // total_people
+def display_average_children():
+
+    average_children = calculate_average_children()
+
+    result_text.delete(1.0, END)  # Очистка текстового поля
+
+    result_text.insert(END, f"Average number of children per person: {average_children}\n")
 # Set up of Tkinder window
 
 root = Tk()
@@ -305,6 +382,9 @@ Button(root, text="Search Immediate Family", command=search_immediate_family).pa
 Button(root, text="Search Extended Family", command=search_extended_family).pack(pady=5)
 Button(root, text="Find Branch Birthdays", command=search_branch_birthdays).pack(pady=5)
 Button(root, text="Average Age at Death", command=show_average_age_at_death).pack(pady=5)
+Button(root, text="Show Birthday Calendar", command=show_birthday_calendar).pack()
+Button(root, text="Show Children Count", command=display_children_count).pack()
+Button(root, text="Show Average Children", command=display_average_children).pack()
 # Create a text field to display the results
 result_text = Text(root, height=10, width=50)
 result_text.pack(pady=5)
