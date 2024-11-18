@@ -13,13 +13,16 @@ class Person:
         self.parentM = parentM
         self.spouse = spouse
 
+    # method to find spouse
     def get_spouse(self):
         return self.spouse if self.spouse else 'No spouse'
 
+    # method to find parents
     def get_parents(self):
 
         return [self.parentF, self.parentM]
 
+    # method to find grandparents
     def get_grandparents(self):
 
         grandparents = []
@@ -36,14 +39,15 @@ class Person:
 
         return grandparents
 
+    # method to find grandchildren
     def get_grandchildren(self):
         grandchildren = []
-        # Получаем всех детей
+        # get all children
         children = self.get_children()  # Метод для поиска детей нужно добавить, если его еще нет
         for child_name in children:
             child_data = people_data.get(child_name)
             if child_data:
-                # Ищем детей у каждого ребенка (т.е. внуков)
+                # Searching for a children of each child
                 child_person = Person(
                     name=child_data["name"],
                     birth_date=child_data["birth_date"],
@@ -55,7 +59,7 @@ class Person:
         return grandchildren
 
     def get_children(self):
-        # Метод для нахождения детей текущего человека
+        # Method to find children of current person
         children = []
         for person_name, details in people_data.items():
             if (details.get("parentF") and self.name in details["parentF"]) or \
@@ -73,7 +77,7 @@ class Person:
 
     def get_cousins(self):
         cousins = []
-        # Получаем родителей текущего человека
+        # Get the current person's parents
         parents = self.get_parents()
         for parent_name in parents:
             if parent_name and parent_name in people_data:
@@ -85,11 +89,10 @@ class Person:
                     parentF=parent_data.get("parentF")[0] if parent_data.get("parentF") else None,
                     parentM=parent_data.get("parentM")[0] if parent_data.get("parentM") else None
                 )
-                # Находим братьев и сестер родителя
+                # Finding the parent's brothers and sisters
                 siblings = parent.get_siblings()
                 for sibling_name in siblings:
-                    # Получаем детей каждого из братьев и сестер (двоюродные братья и сестры)
-                    if sibling_name in people_data:
+                    # We get the children of each of the brothers and sisters (cousins)                    if sibling_name in people_data:
                         sibling_data = people_data[sibling_name]
                         children = sibling_data.get("children", [])
                         cousins.extend(children)
@@ -102,7 +105,7 @@ class Person:
         parents = self.get_parents()
         siblings = self.get_siblings()
         spouse = self.get_spouse()
-        children = self.get_children()  # Предполагаем, что эта функция возвращает список детей
+        children = self.get_children()
 
         return {
             "parents": parents,
@@ -116,15 +119,15 @@ class Person:
         immediate_family = {
             "parents": self.get_parents(),
             "siblings": self.get_siblings(),
-            "spouse": [self.get_spouse()]  # Убедимся, что spouse всегда список
+            "spouse": [self.get_spouse()]  # Let's make sure that spouse is always a list
         }
-        # Добавляем родителей, братьев/сестер и супруга в расширенную семью
+        # Add parents, siblings and spouse to extended family
         for family_group in immediate_family.values():
             if isinstance(family_group, list):
-                extended_family.extend(family_group)  # Разворачиваем список
-            elif family_group:  # Проверяем, что значение не None
+                extended_family.extend(family_group)  # Expand the list
+            elif family_group:  # Check that the value is not None
                 extended_family.append(family_group)
-        # Добавляем теть и дядей (братьев и сестер родителей)
+        # Adding aunts and uncles (parents' brothers and sisters)
         for parent in self.get_parents():
             if parent and parent in people_data:
                 parent_object = Person(
@@ -137,10 +140,10 @@ class Person:
                 )
                 aunts_uncles = parent_object.get_siblings()
                 extended_family.extend(aunts_uncles)
-        # Добавляем кузенов
+        # Adding cousins
         cousins = self.get_cousins()
         extended_family.extend(cousins)
-        # Фильтруем только живых родственников
+        # We filter only living relatives
         extended_family_alive = [
             relative for relative in extended_family
             if isinstance(relative, str) and relative in people_data and not people_data[relative].get("death_date")
@@ -148,7 +151,7 @@ class Person:
         return extended_family_alive
 
     def get_ancestors(self):
-        """Возвращает всех восходящих родственников (предков)."""
+        # Returns all ascending relatives (ancestors)
         ancestors = set()
 
         def find_ancestors(person):
@@ -163,7 +166,7 @@ class Person:
         return list(ancestors)
 
     def get_descendants(self):
-        """Возвращает всех нисходящих родственников (потомков)."""
+        # Returns all descendants of a given item.
         descendants = set()
 
         def find_descendants(person):
@@ -177,7 +180,7 @@ class Person:
         return list(descendants)
 
     def get_branch_birthdays(self):
-        """Находит дни рождения всех членов ветки."""
+        # Finds the birthdays of all members of a branch.
         branch = set(self.get_ancestors() + self.get_descendants())
         birthdays = []
         for relative in branch:
@@ -185,6 +188,7 @@ class Person:
                 birthdays.append(f"{relative}: {people_data[relative]['birth_date']}")
         return birthdays
 
+    # Calculate average age at death
     @staticmethod
     def calculate_average_age_at_death():
         total_age = 0
@@ -210,15 +214,10 @@ def search_immediate_family():
         person = Person(
 
             name=data["name"],
-
             birth_date=data["birth_date"],
-
             death_date=data["death_date"],
-
             parentF=data["parentF"][0] if data["parentF"] else None,
-
             parentM=data["parentM"][0] if data["parentM"] else None,
-
             spouse=data["spouse"] if "spouse" in data else None
 
         )
@@ -246,15 +245,10 @@ def search_extended_family():
         person = Person(
 
             name=data["name"],
-
             birth_date=data["birth_date"],
-
             death_date=data["death_date"],
-
             parentF=data["parentF"][0] if data["parentF"] else None,
-
             parentM=data["parentM"][0] if data["parentM"] else None,
-
             spouse=data["spouse"] if "spouse" in data else None
 
         )
@@ -306,13 +300,13 @@ root.geometry("500x400")
 Label(root, text="Enter a name:").pack(pady=5)
 entry = Entry(root, width=40)
 entry.pack(pady=5)
-# Добавляем кнопки с отдельными вызовами .pack()
+# Adding buttons with individual calls .pack()
 Button(root, text="Search Immediate Family", command=search_immediate_family).pack(pady=5)
 Button(root, text="Search Extended Family", command=search_extended_family).pack(pady=5)
 Button(root, text="Find Branch Birthdays", command=search_branch_birthdays).pack(pady=5)
 Button(root, text="Average Age at Death", command=show_average_age_at_death).pack(pady=5)
-# Создаем текстовое поле для отображения результатов
+# Create a text field to display the results
 result_text = Text(root, height=10, width=50)
 result_text.pack(pady=5)
-# Запускаем главное окно Tkinter
+# Launch the main window Tkinter
 root.mainloop()
