@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e5ca50e-22aa-4597-a55f-dcad33b157aa" name="Changes" comment="added function for searching of relatives and Tkinder window">
+    <list default="true" id="9e5ca50e-22aa-4597-a55f-dcad33b157aa" name="Changes" comment="added function for immediate and extended family, added buttons in the window for these functions.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data.py" beforeDir="false" afterPath="$PROJECT_DIR$/data.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
@@ -36,6 +36,9 @@
     "accountId": "675ea336-ef1e-43fe-8266-4d44287fcbc5"
   }
 }]]></component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -182,7 +185,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731444991051</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="added function for immediate and extended family, added buttons in the window for these functions.">
+      <option name="closed" value="true" />
+      <created>1731758662104</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1731758662104</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -193,6 +204,7 @@
     <MESSAGE value="added name for Otto Cornelia and their duaghter joy" />
     <MESSAGE value="changes" />
     <MESSAGE value="added function for searching of relatives and Tkinder window" />
-    <option name="LAST_COMMIT_MESSAGE" value="added function for searching of relatives and Tkinder window" />
+    <MESSAGE value="added function for immediate and extended family, added buttons in the window for these functions." />
+    <option name="LAST_COMMIT_MESSAGE" value="added function for immediate and extended family, added buttons in the window for these functions." />
   </component>
 </project>

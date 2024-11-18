@@ -1,35 +1,35 @@
 people_data = {
-"Otto Emmersohn": {
+    "Otto Emmersohn": {
         "name": "Otto Emmersohn",
-        "birth_date": "1974-06-05",
+        "birth_date": "1974-04-15",
         "death_date": None,
         "parentF": ["Hans Emmersohn"],
-        "parentM": ["Greta Müller"],
+        "parentM": ["Greta Becker"],
         "spouse": ["Cornelia Emmersohn"]
-   },
+    },
 
-   "Cornelia Emmersohn": {
-       "name": "Cornelia Emmersohn",
-       "birth_date": "1972-02-02",
-       "death_date": None,
-       "parentF": ["Thomas Smith"],
-       "parentM": ["Priya Smith"],
-       "spouse": ["Otto Emmersohn"]
-   },
+    "Cornelia Emmersohn": {
+        "name": "Cornelia Emmersohn",
+        "birth_date": "1972-10-23",
+        "death_date": "2015-02-07",
+        "parentF": ["Thomas Smith"],
+        "parentM": ["Priya Smith"],
+        "spouse": ["Otto Emmersohn"]
+    },
 
-   "Joy Emmersohn": {
-       "name": "Joy Emmersohn",
-       "birth_date": "1995-03-03",
-       "death_date": None,
-       "parentF": ["Cornelia Emmersohn"],
-       "parentM": ["Otto Emmersohn"],
-       "spouse": None
-   },
+    "Joy Emmersohn": {
+        "name": "Joy Emmersohn",
+        "birth_date": "1995-03-03",
+        "death_date": None,
+        "parentF": ["Cornelia Emmersohn"],
+        "parentM": ["Otto Emmersohn"],
+        "spouse": None
+    },
 
     "Thomas Smith": {
         "name": "Thomas Smith",
-        "birth_date": "1945-01-01",
-        "death_date": None,
+        "birth_date": "1945-05-18",
+        "death_date": "2023-04-21",
         "parentF": ["William Smith"],
         "parentM": ["Greta Smith"],
         "spouse": ["Priya Smith"]
@@ -37,8 +37,8 @@ people_data = {
 
     "Priya Smith": {
         "name": "Priya Smith",
-        "birth_date": "1950-01-01",
-        "death_date": None,
+        "birth_date": "1950-11-22",
+        "death_date": "2016-11-13",
         "parentF": ["Robert Johnson"],
         "parentM": ["Linda Johnson"],
         "spouse": ["Thomas Smith"]
@@ -46,8 +46,8 @@ people_data = {
 
     "Robert Johnson": {
         "name": "Robert Johnson",
-        "birth_date": "1915-01-01",
-        "death_date": None,
+        "birth_date": "1915-06-14",
+        "death_date": "1978-03-01",
         "parentF": ["Edward Johnson"],
         "parentM": ["Margaret Johnson"],
         "spouse": ["Linda Johnson"]
@@ -55,8 +55,8 @@ people_data = {
 
     "Linda Johnson": {
         "name": "Linda Johnson",
-        "birth_date": "1920-01-01",
-        "death_date": None,
+        "birth_date": "1920-03-10",
+        "death_date": "1990-07-01",
         "parentF": ["George Brown"],
         "parentM": ["Helen Brown"],
         "spouse": ["Robert Johnson"]
@@ -64,7 +64,7 @@ people_data = {
 
     "Sunita Smith": {
         "name": "Sunita Smith",
-        "birth_date": "1975-01-01",
+        "birth_date": "1975-08-02",
         "death_date": None,
         "parentF": ["Thomas Smith"],
         "parentM": ["Priya Smith"],
@@ -73,7 +73,7 @@ people_data = {
 
     "Anjali Johnson": {
         "name": "Anjali Johnson",
-        "birth_date": "1955-01-01",
+        "birth_date": "1955-04-15",
         "death_date": None,
         "parentF": ["Robert Johnson"],
         "parentM": ["Linda Johnson"],
@@ -82,8 +82,8 @@ people_data = {
 
     "Ramesh Johnson": {
         "name": "Ramesh Johnson",
-        "birth_date": "1952-01-01",
-        "death_date": None,
+        "birth_date": "1952-09-05",
+        "death_date": "2019-11-11",
         "parentF": ["Robert Johnson"],
         "parentM": ["Linda Johnson"],
         "spouse": ["Anjali Johnson"]
@@ -91,7 +91,7 @@ people_data = {
 
     "Vikram Johnson": {
         "name": "Vikram Johnson",
-        "birth_date": "1980-01-01",
+        "birth_date": "1980-07-30",
         "death_date": None,
         "parentF": ["Ramesh Johnson"],
         "parentM": ["Anita Johnson"],
@@ -100,8 +100,8 @@ people_data = {
 
     "Greta Smith": {
         "name": "Greta Smith",
-        "birth_date": "1920-01-01",
-        "death_date": None,
+        "birth_date": "1920-10-11",
+        "death_date": "1998-06-30",
         "parentF": ["Henry White"],
         "parentM": ["Emma White"],
         "spouse": None
@@ -109,8 +109,8 @@ people_data = {
 
     "Rajesh Johnson": {
         "name": "Rajesh Johnson",
-        "birth_date": "1953-01-01",
-        "death_date": None,
+        "birth_date": "1953-06-28",
+        "death_date": "2019-08-22",
         "parentF": ["Robert Johnson"],
         "parentM": ["Linda Johnson"],
         "spouse": None
@@ -118,26 +118,26 @@ people_data = {
 
     "Hans Emmersohn": {
         "name": "Hans Emmersohn",
-        "birth_date": "1945-01-01",
-        "death_date": None,
+        "birth_date": "1945-02-14",
+        "death_date": "2022-09-05",
         "parentF": ["Friedrich Emmersohn"],
         "parentM": ["Helga Schmidt"],
-        "spouse": ["Greta Müller"]
+        "spouse": ["Greta Becker"]
     },
 
-    "Greta Müller": {
-        "name": "Greta Müller",
-        "birth_date": "1948-01-01",
+    "Greta Becker": {
+        "name": "Greta Becker",
+        "birth_date": "1948-03-25",
         "death_date": None,
-        "parentF": ["Heinrich Müller"],
-        "parentM": ["Anna Müller"],
+        "parentF": ["Heinrich Becker"],
+        "parentM": ["Anna Becker"],
         "spouse": ["Hans Emmersohn"]
     },
 
     "Friedrich Emmersohn": {
         "name": "Friedrich Emmersohn",
-        "birth_date": "1920-01-01",
-        "death_date": None,
+        "birth_date": "1920-07-12",
+        "death_date": "1990-05-25",
         "parentF": ["Wilhelm Emmersohn"],
         "parentM": ["Elisabeth Bauer"],
         "spouse": ["Helga Schmidt"]
@@ -145,8 +145,8 @@ people_data = {
 
     "Helga Schmidt": {
         "name": "Helga Schmidt",
-        "birth_date": "1925-01-01",
-        "death_date": None,
+        "birth_date": "1925-11-19",
+        "death_date": "1995-04-10",
         "parentF": ["Karl Schmidt"],
         "parentM": None,
         "spouse": ["Friedrich Emmersohn"]
@@ -154,7 +154,7 @@ people_data = {
 
     "Karl Emmersohn": {
         "name": "Karl Emmersohn",
-        "birth_date": "1950-01-01",
+        "birth_date": "1950-09-09",
         "death_date": None,
         "parentF": ["Friedrich Emmersohn"],
         "parentM": ["Helga Schmidt"],
@@ -163,7 +163,7 @@ people_data = {
 
     "Ingrid Emmersohn": {
         "name": "Ingrid Emmersohn",
-        "birth_date": "1952-01-01",
+        "birth_date": "1952-12-27",
         "death_date": None,
         "parentF": ["Friedrich Emmersohn"],
         "parentM": ["Helga Schmidt"],
@@ -172,33 +172,35 @@ people_data = {
 
     "Erik Emmersohn": {
         "name": "Erik Emmersohn",
-        "birth_date": "1980-01-01",
+        "birth_date": "1980-04-06",
         "death_date": None,
         "parentF": ["Karl Emmersohn"],
-        "parentM": ["Ingrid Müller"],
+        "parentM": ["Ingrid Becker"],
         "spouse": None
     },
 
     "Anna Emmersohn": {
         "name": "Anna Emmersohn",
-        "birth_date": "1982-01-01",
+        "birth_date": "1982-02-20",
         "death_date": None,
         "parentF": ["Karl Emmersohn"],
-        "parentM": ["Ingrid Müller"],
+        "parentM": ["Ingrid Becker"],
         "spouse": None
     },
+
     "Liesel Emmersohn": {
         "name": "Liesel Emmersohn",
-        "birth_date": "1970-01-01",
+        "birth_date": "1970-05-04",
         "death_date": None,
         "parentF": ["Hans Emmersohn"],
-        "parentM": ["Greta Müller"],
+        "parentM": ["Greta Becker"],
         "spouse": ["Marta Emmersohn"]
     },
+
     "Marta Emmersohn": {
         "name": "Marta Emmersohn",
-        "birth_date": "1972-01-01",
-        "death_date": None,
+        "birth_date": "1972-01-15",
+        "death_date": "2011-08-12",
         "parentF": ["Hans Emmersohn"],
         "parentM": ["Greta Müller"],
         "spouse": ["Liesel Emmersohn"]

@@ -1,5 +1,6 @@
 from tkinter import Tk, Label, Entry, Button, Text, END
 from data import people_data
+from datetime import datetime
 
 class Person:
 
@@ -146,6 +147,57 @@ class Person:
         ]
         return extended_family_alive
 
+    def get_ancestors(self):
+        """Возвращает всех восходящих родственников (предков)."""
+        ancestors = set()
+
+        def find_ancestors(person):
+            if person in people_data:
+                parents = (people_data[person].get("parentF") or []) + (people_data[person].get("parentM") or [])
+                for parent in parents:
+                    if parent not in ancestors:  # Избегаем циклов
+                        ancestors.add(parent)
+                        find_ancestors(parent)
+
+        find_ancestors(self.name)
+        return list(ancestors)
+
+    def get_descendants(self):
+        """Возвращает всех нисходящих родственников (потомков)."""
+        descendants = set()
+
+        def find_descendants(person):
+            for potential_descendant, details in people_data.items():
+                parents = (details.get("parentF") or []) + (details.get("parentM") or [])
+                if person in parents and potential_descendant not in descendants:
+                    descendants.add(potential_descendant)
+                    find_descendants(potential_descendant)
+
+        find_descendants(self.name)
+        return list(descendants)
+
+    def get_branch_birthdays(self):
+        """Находит дни рождения всех членов ветки."""
+        branch = set(self.get_ancestors() + self.get_descendants())
+        birthdays = []
+        for relative in branch:
+            if relative in people_data and people_data[relative].get("birth_date"):
+                birthdays.append(f"{relative}: {people_data[relative]['birth_date']}")
+        return birthdays
+
+    @staticmethod
+    def calculate_average_age_at_death():
+        total_age = 0
+        count = 0
+        for person_data in people_data.values():
+            if person_data.get("death_date") and person_data.get("birth_date"):
+                birth_date = datetime.strptime(person_data["birth_date"], "%Y-%m-%d")
+                death_date = datetime.strptime(person_data["death_date"], "%Y-%m-%d")
+                total_age += (death_date - birth_date).days / 365.25
+                count += 1
+        return total_age / count if count > 0 else 0
+
+
 # Function for searching of relatives
 def search_immediate_family():
 
@@ -219,6 +271,32 @@ def search_extended_family():
 
         result_text.insert(END, "Person not found in the database.\n")
 
+def search_branch_birthdays():
+   name = entry.get()
+   if name in people_data:
+       data = people_data[name]
+       person = Person(
+           name=data["name"],
+           birth_date=data["birth_date"],
+           death_date=data["death_date"],
+           parentF=data["parentF"][0] if data["parentF"] else None,
+           parentM=data["parentM"][0] if data["parentM"] else None,
+           spouse=data["spouse"] if "spouse" in data else None
+       )
+       birthdays = person.get_branch_birthdays()
+       result_text.delete(1.0, END)
+       if birthdays:
+           result_text.insert(END, f"Family branch birthdays for {name}:\n" + "\n".join(birthdays))
+       else:
+           result_text.insert(END, f"No birthdays found for the branch of {name}.")
+   else:
+       result_text.delete(1.0, END)
+       result_text.insert(END, "Person not found in the database.\n")
+
+def show_average_age_at_death():
+       average_age = Person.calculate_average_age_at_death()
+       result_text.delete(1.0, END)
+       result_text.insert(END, f"Average age at death: {average_age:.2f}\n")
 
 # Set up of Tkinder window
 
@@ -231,6 +309,8 @@ entry.pack(pady=5)
 # Добавляем кнопки с отдельными вызовами .pack()
 Button(root, text="Search Immediate Family", command=search_immediate_family).pack(pady=5)
 Button(root, text="Search Extended Family", command=search_extended_family).pack(pady=5)
+Button(root, text="Find Branch Birthdays", command=search_branch_birthdays).pack(pady=5)
+Button(root, text="Average Age at Death", command=show_average_age_at_death).pack(pady=5)
 # Создаем текстовое поле для отображения результатов
 result_text = Text(root, height=10, width=50)
 result_text.pack(pady=5)
