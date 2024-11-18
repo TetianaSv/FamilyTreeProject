@@ -512,6 +512,7 @@ name_menu = OptionMenu(root, selected_name, *sorted_names)
 name_menu.pack(pady=5)
 
 
+
 # Adding buttons with individual calls .pack()
 Button(root, text="Show Parents", command=show_parents).pack(pady=5)
 Button(root, text="Show Grandchildren", command=show_grandchildren).pack(pady=5)
