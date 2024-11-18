@@ -1,4 +1,4 @@
-from tkinter import Tk, Label, Entry, Button, Text, END
+from tkinter import Tk, Label, Button, Text, StringVar, OptionMenu, END
 from data import people_data
 from datetime import datetime
 from collections import defaultdict
@@ -202,12 +202,79 @@ class Person:
                 count += 1
         return total_age / count if count > 0 else 0
 
+def show_parents():
+    name = selected_name.get()
+    if name == "Select a name":
+        result_text.delete(1.0, END)
+        result_text.insert(END, "Please select a name from the list.\n")
+        return
 
+    if name in people_data:
+        person_data = people_data[name]
+        person = Person(
+            name=person_data["name"],
+            birth_date=person_data.get("birth_date"),
+            death_date=person_data.get("death_date"),
+            parentF=person_data.get("parentF")[0] if person_data.get("parentF") else None,
+            parentM=person_data.get("parentM")[0] if person_data.get("parentM") else None
+        )
 
-# Function for searching of relatives
+        parents = person.get_parents()
+
+        result_text.delete(1.0, END)
+        result_text.insert(END, f"Parents of {name}:\n")
+        for parent in parents:
+            result_text.insert(END, f"- {parent}\n" if parent else "- Unknown\n")
+    else:
+        result_text.delete(1.0, END)
+        result_text.insert(END, "Person not found in data.\n")
+
+def show_grandchildren():
+    name = selected_name.get()
+    if name == "Select a name":
+        result_text.delete(1.0, END)
+        result_text.insert(END, "Please select a name from the list.\n")
+        return
+
+    if name in people_data:
+        person_data = people_data[name]
+        person = Person(
+            name=person_data["name"],
+            birth_date=person_data.get("birth_date"),
+            death_date=person_data.get("death_date"),
+            parentF=person_data.get("parentF")[0] if person_data.get("parentF") else None,
+            parentM=person_data.get("parentM")[0] if person_data.get("parentM") else None
+        )
+
+        grandchildren = person.get_grandchildren()
+
+        result_text.delete(1.0, END)
+        result_text.insert(END, f"Grandchildren of {name}:\n")
+        if grandchildren:
+            for grandchild in grandchildren:
+                result_text.insert(END, f"- {grandchild}\n")
+        else:
+            result_text.insert(END, "No grandchildren found.\n")
+    else:
+        result_text.delete(1.0, END)
+        result_text.insert(END, "Person not found in data.\n")
+
+def show_immediate_family():
+    name = selected_name.get()
+    if name == "Select a name":
+        result_text.delete(1.0, END)
+        result_text.insert(END, "Please select a name from the list.\n")
+        return
+def show_extended_family():
+    name = selected_name.get()
+    if name == "Select a name":
+        result_text.delete(1.0, END)
+        result_text.insert(END, "Please select a name from the list.\n")
+        return
+
 def search_immediate_family():
 
-    name = entry.get()
+    name = selected_name.get()
 
     if name in people_data:
 
@@ -238,7 +305,7 @@ def search_immediate_family():
 
 def search_extended_family():
 
-    name = entry.get()
+    name = selected_name.get()
 
     if name in people_data:
 
@@ -267,8 +334,69 @@ def search_extended_family():
 
         result_text.insert(END, "Person not found in the database.\n")
 
+def show_siblings():
+    name = selected_name.get()
+    if name == "Select a name":
+        result_text.delete(1.0, END)
+        result_text.insert(END, "Please select a name from the list.\n")
+        return
+
+    if name in people_data:
+        person_data = people_data[name]
+        person = Person(
+            name=person_data["name"],
+            birth_date=person_data.get("birth_date"),
+            death_date=person_data.get("death_date"),
+            parentF=person_data.get("parentF")[0] if person_data.get("parentF") else None,
+            parentM=person_data.get("parentM")[0] if person_data.get("parentM") else None
+        )
+
+        siblings = person.get_siblings()
+
+        result_text.delete(1.0, END)
+        result_text.insert(END, f"Siblings of {name}:\n")
+        if siblings:
+            for sibling in siblings:
+                result_text.insert(END, f"- {sibling}\n")
+        else:
+            result_text.insert(END, "No siblings found.\n")
+    else:
+        result_text.delete(1.0, END)
+        result_text.insert(END, "Person not found in data.\n")
+
+def show_cousins():
+    name = selected_name.get()
+    if name == "Select a name":
+        result_text.delete(1.0, END)
+        result_text.insert(END, "Please select a name from the list.\n")
+        return
+
+    if name in people_data:
+        person_data = people_data[name]
+        person = Person(
+            name=person_data["name"],
+            birth_date=person_data.get("birth_date"),
+            death_date=person_data.get("death_date"),
+            parentF=person_data.get("parentF")[0] if person_data.get("parentF") else None,
+            parentM=person_data.get("parentM")[0] if person_data.get("parentM") else None
+        )
+
+        cousins = person.get_cousins()
+
+        result_text.delete(1.0, END)
+        result_text.insert(END, f"Cousins of {name}:\n")
+        if cousins:
+            for cousin in cousins:
+                result_text.insert(END, f"- {cousin}\n")
+        else:
+            result_text.insert(END, "No cousins found.\n")
+    else:
+        result_text.delete(1.0, END)
+        result_text.insert(END, "Person not found in data.\n")
+
+
 def search_branch_birthdays():
-   name = entry.get()
+   name = selected_name.get()
    if name in people_data:
        data = people_data[name]
        person = Person(
@@ -368,23 +496,34 @@ def display_average_children():
 
     result_text.delete(1.0, END)  # Очистка текстового поля
 
-    result_text.insert(END, f"Average number of children per person: {average_children}\n")
+    result_text.insert(END, f"Average number of children per person: {average_children:.2f}\n")
 # Set up of Tkinder window
 
 root = Tk()
-root.title("Search relatives")
-root.geometry("500x400")
-Label(root, text="Enter a name:").pack(pady=5)
-entry = Entry(root, width=40)
-entry.pack(pady=5)
+root.title("Family Tree Viewer")
+root.geometry("600x700")
+sorted_names = sorted(people_data.keys(), key=lambda name: name.split()[-1])
+# Переменная для хранения выбранного имени
+selected_name = StringVar()
+selected_name.set("Select a name")  # Начальное значение
+# Метка и выпадающий список для выбора имени
+Label(root, text="Select Name:").pack(pady=5)
+name_menu = OptionMenu(root, selected_name, *sorted_names)
+name_menu.pack(pady=5)
+
+
 # Adding buttons with individual calls .pack()
+Button(root, text="Show Parents", command=show_parents).pack(pady=5)
+Button(root, text="Show Grandchildren", command=show_grandchildren).pack(pady=5)
 Button(root, text="Search Immediate Family", command=search_immediate_family).pack(pady=5)
 Button(root, text="Search Extended Family", command=search_extended_family).pack(pady=5)
+Button(root, text="Search Siblings", command=show_siblings).pack(pady=5)
+Button(root, text="Search Cousins", command=show_cousins).pack(pady=5)
 Button(root, text="Find Branch Birthdays", command=search_branch_birthdays).pack(pady=5)
+Button(root, text="Show Birthday Calendar", command=show_birthday_calendar).pack(pady=5)
 Button(root, text="Average Age at Death", command=show_average_age_at_death).pack(pady=5)
-Button(root, text="Show Birthday Calendar", command=show_birthday_calendar).pack()
-Button(root, text="Show Children Count", command=display_children_count).pack()
-Button(root, text="Show Average Children", command=display_average_children).pack()
+Button(root, text="Show Children Count", command=display_children_count).pack(pady=5)
+Button(root, text="Show Average Children", command=display_average_children).pack(pady=5)
 # Create a text field to display the results
 result_text = Text(root, height=10, width=50)
 result_text.pack(pady=5)
