@@ -217,6 +217,7 @@ class Person:
                 count += 1
         return total_age / count if count > 0 else 0
 
+
 def show_parents():
     name = selected_name.get()
     if name == "Select a name":
@@ -294,7 +295,6 @@ def search_immediate_family():
     if name in people_data:
 
         data = people_data[name]
-
         person = Person(
 
             name=data["name"],
@@ -322,7 +322,6 @@ def search_extended_family():
     if name in people_data:
 
         data = people_data[name]
-
         person = Person(
 
             name=data["name"],
@@ -518,8 +517,6 @@ selected_name.set("Select a name")  # Initial value
 Label(root, text="Family Tree Explorer").pack(pady=5)
 name_menu = OptionMenu(root, selected_name, *sorted_names)
 name_menu.pack(pady=5)
-
-
 
 # Adding buttons with individual calls .pack()
 Button(root, text="Show Parents", command=show_parents, width=20).pack(pady=5)
