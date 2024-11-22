@@ -331,15 +331,12 @@ def search_extended_family():
         )
 
         extended_family = person.get_extended_family()
-
         result_text.delete(1.0, END)
-
         result_text.insert(END, f"Extended family of {name} (alive only): {extended_family}\n")
 
     else:
 
         result_text.delete(1.0, END)
-
         result_text.insert(END, "Person not found in the database.\n")
 
 def show_siblings():
