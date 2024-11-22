@@ -202,7 +202,7 @@ people_data = {
         "birth_date": "1972-01-15",
         "death_date": "2011-08-12",
         "parentF": ["Hans Emmersohn"],
-        "parentM": ["Greta Müller"],
+        "parentM": ["Greta Becker"],
         "spouse": ["Liesel Emmersohn"]
     }
 }

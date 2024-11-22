@@ -18,10 +18,23 @@ class Person:
     def get_spouse(self):
         return self.spouse if self.spouse else 'No spouse'
 
+    # TASK F1
+
+    # Task F1a i
     # method to find parents
     def get_parents(self):
 
         return [self.parentF, self.parentM]
+
+    # method to find children
+    def get_children(self):
+        # Method to find children of current person
+        children = []
+        for person_name, details in people_data.items():
+            if (details.get("parentF") and self.name in details["parentF"]) or \
+                    (details.get("parentM") and self.name in details["parentM"]):
+                children.append(person_name)
+        return children
 
     # method to find grandparents
     def get_grandparents(self):
@@ -40,6 +53,7 @@ class Person:
 
         return grandparents
 
+    # Task F1a ii
     # method to find grandchildren
     def get_grandchildren(self):
         grandchildren = []
@@ -59,15 +73,9 @@ class Person:
                 grandchildren.extend(child_person.get_children())
         return grandchildren
 
-    def get_children(self):
-        # Method to find children of current person
-        children = []
-        for person_name, details in people_data.items():
-            if (details.get("parentF") and self.name in details["parentF"]) or \
-                    (details.get("parentM") and self.name in details["parentM"]):
-                children.append(person_name)
-        return children
-
+    # TASK F2
+    #Task F2a i
+    # method to find siblings
     def get_siblings(self):
         siblings = []
         for person_name, details in people_data.items():
@@ -76,6 +84,8 @@ class Person:
                 siblings.append(person_name)
         return siblings
 
+    # Task F2a ii
+    # method to find cousins
     def get_cousins(self):
         cousins = []
         # Get the current person's parents
@@ -99,8 +109,8 @@ class Person:
                         cousins.extend(children)
         return cousins
 
-# Task Fa1 and F1b
-
+    # TASK F1b
+    # Task F1b i
     def get_immediate_family(self):
 
         parents = self.get_parents()
@@ -115,6 +125,7 @@ class Person:
             "children": children
         }
 
+    # Task F1b ii
     def get_extended_family(self):
         extended_family = []
         immediate_family = {
@@ -141,7 +152,7 @@ class Person:
                 )
                 aunts_uncles = parent_object.get_siblings()
                 extended_family.extend(aunts_uncles)
-        # Adding cousins
+        # Add cousins
         cousins = self.get_cousins()
         extended_family.extend(cousins)
         # We filter only living relatives
@@ -190,7 +201,7 @@ class Person:
         return birthdays
 
     # Calculate average age at death
-    @staticmethod
+    @staticmethod #to define a static method in a class
     def calculate_average_age_at_death():
         total_age = 0
         count = 0
@@ -292,15 +303,12 @@ def search_immediate_family():
         )
 
         immediate_family = person.get_immediate_family()
-
         result_text.delete(1.0, END)
-
         result_text.insert(END, f"Immediate family of {name}: {immediate_family}\n")
 
     else:
 
         result_text.delete(1.0, END)
-
         result_text.insert(END, "Person not found in the database.\n")
 
 def search_extended_family():
@@ -394,7 +402,9 @@ def show_cousins():
         result_text.delete(1.0, END)
         result_text.insert(END, "Person not found in data.\n")
 
-
+#TASK F2b
+#Task F2b i
+# Show the list of family birthday
 def search_branch_birthdays():
    name = selected_name.get()
    if name in people_data:
@@ -417,10 +427,6 @@ def search_branch_birthdays():
        result_text.delete(1.0, END)
        result_text.insert(END, "Person not found in the database.\n")
 
-def show_average_age_at_death():
-       average_age = Person.calculate_average_age_at_death()
-       result_text.delete(1.0, END)
-       result_text.insert(END, f"Average age at death: {average_age:.2f}\n")
 
 # Adding new method for birthday calendar
 
@@ -432,11 +438,12 @@ def create_birthday_calendar():
            # Get month and day
            month_day = "-".join(birth_date.split("-")[1:])
            calendar[month_day].append(details["name"])
-   # Преобразуем в упорядоченный словарь
+
+   # Turn to an organized calendar
    sorted_calendar = dict(sorted(calendar.items(), key=lambda x: (int(x[0].split("-")[0]), int(x[0].split("-")[1]))))
    return sorted_calendar
 
-
+#Task F2b ii
 def show_birthday_calendar():
    calendar = create_birthday_calendar()  # Создаём упорядоченный календарь
    result_text.delete(1.0, END)  # Очистка текстового поля
@@ -445,15 +452,15 @@ def show_birthday_calendar():
        people_list = ", ".join(people)
        result_text.insert(END, f"{date}: {people_list}\n")
 
-
+#Task F3b i
 def count_children():
     children_count = defaultdict(int)
     for child, details in people_data.items():
-        # Проверяем родителей ребёнка и заменяем None на пустой список
+        # Checking the child's parents and replacing None with an empty list
         fathers = details.get("parentF") or []
         mothers = details.get("parentM") or []
 
-        # Итерируемся по спискам родителей
+        # Iterating through the lists of parents
         for father in fathers:
             children_count[father] += 1
         for mother in mothers:
@@ -462,13 +469,10 @@ def count_children():
     return dict(children_count)
 
 
-
 def display_children_count():
 
     children_count = count_children()  # Получаем словарь с подсчётом детей
-
     result_text.delete(1.0, END)  # Очистка текстового поля
-
     result_text.insert(END, "Children Count:\n")
 
     for person, count in children_count.items():
@@ -478,12 +482,10 @@ def display_children_count():
 def calculate_average_children():
 
     children_count = count_children()
-
     total_people = len(people_data)  # Всего людей в дереве
-
     total_children = sum(children_count.values())  # Сумма всех детей
 
-    # Защита от деления на 0
+    # Divide by 0 protection
 
     if total_people == 0:
 
@@ -493,38 +495,43 @@ def calculate_average_children():
 def display_average_children():
 
     average_children = calculate_average_children()
-
-    result_text.delete(1.0, END)  # Очистка текстового поля
-
+    result_text.delete(1.0, END)  #Clearing a text field
     result_text.insert(END, f"Average number of children per person: {average_children:.2f}\n")
-# Set up of Tkinder window
+
+# Task F3b ii
+def show_average_age_at_death():
+       average_age = Person.calculate_average_age_at_death()
+       result_text.delete(1.0, END)
+       result_text.insert(END, f"Average age at death: {average_age:.2f}\n")
+
+#Set up of Tkinder window
 
 root = Tk()
-root.title("Family Tree Viewer")
+root.title("Family Tree Explorer")
 root.geometry("600x700")
 sorted_names = sorted(people_data.keys(), key=lambda name: name.split()[-1])
-# Переменная для хранения выбранного имени
+#Variable to store the selected name
 selected_name = StringVar()
-selected_name.set("Select a name")  # Начальное значение
-# Метка и выпадающий список для выбора имени
-Label(root, text="Select Name:").pack(pady=5)
+selected_name.set("Select a name")  # Initial value
+#Label and drop-down list for selecting a name
+Label(root, text="Family Tree Explorer").pack(pady=5)
 name_menu = OptionMenu(root, selected_name, *sorted_names)
 name_menu.pack(pady=5)
 
 
 
 # Adding buttons with individual calls .pack()
-Button(root, text="Show Parents", command=show_parents).pack(pady=5)
-Button(root, text="Show Grandchildren", command=show_grandchildren).pack(pady=5)
-Button(root, text="Search Immediate Family", command=search_immediate_family).pack(pady=5)
-Button(root, text="Search Extended Family", command=search_extended_family).pack(pady=5)
-Button(root, text="Search Siblings", command=show_siblings).pack(pady=5)
-Button(root, text="Search Cousins", command=show_cousins).pack(pady=5)
-Button(root, text="Find Branch Birthdays", command=search_branch_birthdays).pack(pady=5)
-Button(root, text="Show Birthday Calendar", command=show_birthday_calendar).pack(pady=5)
-Button(root, text="Average Age at Death", command=show_average_age_at_death).pack(pady=5)
-Button(root, text="Show Children Count", command=display_children_count).pack(pady=5)
-Button(root, text="Show Average Children", command=display_average_children).pack(pady=5)
+Button(root, text="Show Parents", command=show_parents, width=20).pack(pady=5)
+Button(root, text="Show Grandchildren", command=show_grandchildren, width=20).pack(pady=5)
+Button(root, text="Show Immediate Family", command=search_immediate_family, width=20).pack(pady=5)
+Button(root, text="Show Extended Family", command=search_extended_family, width=20).pack(pady=5)
+Button(root, text="Show Siblings", command=show_siblings, width=20).pack(pady=5)
+Button(root, text="Show Cousins", command=show_cousins, width=20).pack(pady=5)
+Button(root, text="Show Branch Birthdays", command=search_branch_birthdays, width=20).pack(pady=5)
+Button(root, text="Show Birthday Calendar", command=show_birthday_calendar, width=20).pack(pady=5)
+Button(root, text="Show Age at Death", command=show_average_age_at_death, width=20).pack(pady=5)
+Button(root, text="Show Children Count", command=display_children_count, width=20).pack(pady=5)
+Button(root, text="Show Average Children", command=display_average_children, width=20).pack(pady=5)
 # Create a text field to display the results
 result_text = Text(root, height=10, width=50)
 result_text.pack(pady=5)
