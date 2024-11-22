@@ -1,3 +1,7 @@
+  #project completed by Tetiana Svynar 001390358 and Uzbek Imtiaz Cheema 001364457
+  #Task F1a and F1b was developed by Tetiana
+  #Task F2a and F2b was developed by Cheema
+  #Task F3 a and b done together
 from tkinter import Tk, Label, Button, Text, StringVar, OptionMenu, END
 from data import people_data
 from datetime import datetime
