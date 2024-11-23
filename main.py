@@ -62,7 +62,7 @@ class Person:
     def get_grandchildren(self):
         grandchildren = []
         # get all children
-        children = self.get_children()  # Метод для поиска детей нужно добавить, если его еще нет
+        children = self.get_children()
         for child_name in children:
             child_data = people_data.get(child_name)
             if child_data:
@@ -80,11 +80,26 @@ class Person:
     # TASK F2
     #Task F2a i
     # method to find siblings
+
     def get_siblings(self):
         siblings = []
         for person_name, details in people_data.items():
-            # We are looking for siblings who have the same parents and who are not the person himself
-            if details["parentF"] == self.parentF and details["parentM"] == self.parentM and person_name != self.name:
+            # Extract the current person's parents
+            person_parentF = details.get("parentF", [])
+            person_parentM = details.get("parentM", [])
+
+            # Make sure parent lists are lists even if they are empty or missing
+            if not isinstance(person_parentF, list):
+                person_parentF = []
+            if not isinstance(person_parentM, list):
+                person_parentM = []
+
+            # Checking common parents
+            has_same_father = self.parentF and self.parentF in person_parentF
+            has_same_mother = self.parentM and self.parentM in person_parentM
+
+            # We exclude ourselves
+            if (has_same_father or has_same_mother) and person_name != self.name:
                 siblings.append(person_name)
         return siblings
 
@@ -174,7 +189,7 @@ class Person:
             if person in people_data:
                 parents = (people_data[person].get("parentF") or []) + (people_data[person].get("parentM") or [])
                 for parent in parents:
-                    if parent not in ancestors:  # Избегаем циклов
+                    if parent not in ancestors:  # Avoiding Cycles
                         ancestors.add(parent)
                         find_ancestors(parent)
 
@@ -338,7 +353,6 @@ def search_extended_family():
         result_text.insert(END, f"Extended family of {name} (alive only): {extended_family}\n")
 
     else:
-
         result_text.delete(1.0, END)
         result_text.insert(END, "Person not found in the database.\n")
 
@@ -356,11 +370,9 @@ def show_siblings():
             birth_date=person_data.get("birth_date"),
             death_date=person_data.get("death_date"),
             parentF=person_data.get("parentF")[0] if person_data.get("parentF") else None,
-            parentM=person_data.get("parentM")[0] if person_data.get("parentM") else None
+            parentM=person_data.get("parentM")[0] if person_data.get("parentM") else None,
         )
-
         siblings = person.get_siblings()
-
         result_text.delete(1.0, END)
         result_text.insert(END, f"Siblings of {name}:\n")
         if siblings:
