@@ -7,7 +7,7 @@ from data import people_data
 from datetime import datetime
 from collections import defaultdict
 
-class Person:
+class Person: # Tetiana Svynar 001390358
 
     def __init__(self, name, birth_date=None, death_date=None, parentF=None, parentM=None, spouse=None):
 
@@ -18,11 +18,12 @@ class Person:
         self.parentM = parentM
         self.spouse = spouse
 
+    # Tetiana Svynar 001390358
     # method to find spouse
     def get_spouse(self):
         return self.spouse if self.spouse else 'No spouse'
 
-    # TASK F1
+    # TASK F1 Tetiana Svynar 001390358
 
     # Task F1a i
     # method to find parents
@@ -106,29 +107,40 @@ class Person:
     # Task F2a ii
     # method to find cousins
     def get_cousins(self):
+
         cousins = []
         # Get the current person's parents
         parents = self.get_parents()
+
         for parent_name in parents:
+
             if parent_name and parent_name in people_data:
+
+                # Create object Person for parent
+
                 parent_data = people_data[parent_name]
                 parent = Person(
+
                     name=parent_data["name"],
                     birth_date=parent_data.get("birth_date"),
                     death_date=parent_data.get("death_date"),
                     parentF=parent_data.get("parentF")[0] if parent_data.get("parentF") else None,
-                    parentM=parent_data.get("parentM")[0] if parent_data.get("parentM") else None
+                    parentM=parent_data.get("parentM")[0] if parent_data.get("parentM") else None,
+
                 )
+
                 # Finding the parent's brothers and sisters
-                siblings = parent.get_siblings()
-                for sibling_name in siblings:
-                    # We get the children of each of the brothers and sisters (cousins)                    if sibling_name in people_data:
-                        sibling_data = people_data[sibling_name]
-                        children = sibling_data.get("children", [])
-                        cousins.extend(children)
+                parent_siblings = parent.get_siblings()
+                for sibling_name in parent_siblings:
+
+                    # We get the children of each of the brothers and sisters (cousins)
+                    for person_name, details in people_data.items():
+                        if sibling_name in ((details.get("parentF") or []) + (details.get("parentM") or [])):
+                            cousins.append(person_name)
+
         return cousins
 
-    # TASK F1b
+    # TASK F1b Uzbek Imtiaz Cheema 001364457
     # Task F1b i
     def get_immediate_family(self):
 
@@ -220,7 +232,7 @@ class Person:
         return birthdays
 
     # Calculate average age at death
-    @staticmethod #to define a static method in a class
+    @staticmethod # to define a static method in a class
     def calculate_average_age_at_death():
         total_age = 0
         count = 0
@@ -296,6 +308,7 @@ def show_immediate_family():
         result_text.delete(1.0, END)
         result_text.insert(END, "Please select a name from the list.\n")
         return
+
 def show_extended_family():
     name = selected_name.get()
     if name == "Select a name":
@@ -304,29 +317,21 @@ def show_extended_family():
         return
 
 def search_immediate_family():
-
     name = selected_name.get()
-
     if name in people_data:
-
         data = people_data[name]
         person = Person(
-
             name=data["name"],
             birth_date=data["birth_date"],
             death_date=data["death_date"],
             parentF=data["parentF"][0] if data["parentF"] else None,
             parentM=data["parentM"][0] if data["parentM"] else None,
             spouse=data["spouse"] if "spouse" in data else None
-
         )
-
         immediate_family = person.get_immediate_family()
         result_text.delete(1.0, END)
         result_text.insert(END, f"Immediate family of {name}: {immediate_family}\n")
-
     else:
-
         result_text.delete(1.0, END)
         result_text.insert(END, "Person not found in the database.\n")
 
@@ -488,7 +493,6 @@ def display_children_count():
     result_text.insert(END, "Children Count:\n")
 
     for person, count in children_count.items():
-
         result_text.insert(END, f"{person}: {count} children\n")
 
 def calculate_average_children():
@@ -498,11 +502,8 @@ def calculate_average_children():
     total_children = sum(children_count.values())  # Сумма всех детей
 
     # Divide by 0 protection
-
     if total_people == 0:
-
         return 0
-
     return total_children // total_people
 def display_average_children():
 
@@ -516,7 +517,7 @@ def show_average_age_at_death():
        result_text.delete(1.0, END)
        result_text.insert(END, f"Average age at death: {average_age:.2f}\n")
 
-#Set up of Tkinder window
+#Set up of Tkinder window. Tetiana Svynar 001390358
 
 root = Tk()
 root.title("Family Tree Explorer")
@@ -539,7 +540,7 @@ Button(root, text="Show Siblings", command=show_siblings, width=20).pack(pady=5)
 Button(root, text="Show Cousins", command=show_cousins, width=20).pack(pady=5)
 Button(root, text="Show Branch Birthdays", command=search_branch_birthdays, width=20).pack(pady=5)
 Button(root, text="Show Birthday Calendar", command=show_birthday_calendar, width=20).pack(pady=5)
-Button(root, text="Show Age at Death", command=show_average_age_at_death, width=20).pack(pady=5)
+Button(root, text="Show Average Age at Death", command=show_average_age_at_death, width=20).pack(pady=5)
 Button(root, text="Show Children Count", command=display_children_count, width=20).pack(pady=5)
 Button(root, text="Show Average Children", command=display_average_children, width=20).pack(pady=5)
 # Create a text field to display the results

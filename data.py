@@ -1,4 +1,5 @@
 people_data = {
+
     "Otto Emmersohn": {
         "name": "Otto Emmersohn",
         "birth_date": "1974-04-15",
