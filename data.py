@@ -83,8 +83,8 @@ people_data = {
         "name": "Anjali Johnson",
         "birth_date": "1955-04-15",
         "death_date": None,
-        "parentF": ["Robert Johnson"],
-        "parentM": ["Linda Johnson"],
+        "parentF": None,
+        "parentM": None,
         "spouse": ["Ramesh Johnson"]
     },
 
@@ -102,7 +102,7 @@ people_data = {
         "birth_date": "1980-07-30",
         "death_date": None,
         "parentF": ["Ramesh Johnson"],
-        "parentM": ["Anita Johnson"],
+        "parentM": ["Anjali Johnson"],
         "spouse": None
     },
 
@@ -173,9 +173,9 @@ people_data = {
         "name": "Ingrid Emmersohn",
         "birth_date": "1952-12-27",
         "death_date": None,
-        "parentF": ["Friedrich Emmersohn"],
-        "parentM": ["Helga Schmidt"],
-        "spouse": None
+        "parentF": None,
+        "parentM": None,
+        "spouse": ["Karl Emmersohn"]
     },
 
     "Erik Emmersohn": {
@@ -192,7 +192,7 @@ people_data = {
         "birth_date": "1982-02-20",
         "death_date": None,
         "parentF": ["Karl Emmersohn"],
-        "parentM": ["Ingrid Becker"],
+        "parentM": ["Ingrid"],
         "spouse": None
     },
 
@@ -202,7 +202,7 @@ people_data = {
         "death_date": None,
         "parentF": ["Hans Emmersohn"],
         "parentM": ["Greta Becker"],
-        "spouse": ["Marta Emmersohn"]
+        "spouse": None
     },
 
     "Marta Emmersohn": {
@@ -211,7 +211,7 @@ people_data = {
         "death_date": "2011-08-12",
         "parentF": ["Hans Emmersohn"],
         "parentM": ["Greta Becker"],
-        "spouse": ["Liesel Emmersohn"]
+        "spouse": None
     }
 }
 
