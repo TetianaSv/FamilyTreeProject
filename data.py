@@ -192,7 +192,7 @@ people_data = {
         "birth_date": "1982-02-20",
         "death_date": None,
         "parentF": ["Karl Emmersohn"],
-        "parentM": ["Ingrid"],
+        "parentM": ["Ingrid Becker"],
         "spouse": None
     },
 
