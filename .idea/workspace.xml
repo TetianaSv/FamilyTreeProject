@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e5ca50e-22aa-4597-a55f-dcad33b157aa" name="Changes" comment="changed get_siblings function">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data.py" beforeDir="false" afterPath="$PROJECT_DIR$/data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="9e5ca50e-22aa-4597-a55f-dcad33b157aa" name="Changes" comment="changed get_cousins function" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -265,7 +261,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732310125232</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="changed get_cousins function">
+      <option name="closed" value="true" />
+      <created>1732539633767</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1732539633767</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -283,6 +287,7 @@
     <MESSAGE value="add last comments" />
     <MESSAGE value="add another last comments" />
     <MESSAGE value="changed get_siblings function" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed get_siblings function" />
+    <MESSAGE value="changed get_cousins function" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed get_cousins function" />
   </component>
 </project>

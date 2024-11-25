@@ -26,7 +26,14 @@ people_data = {
         "parentM": ["Otto Emmersohn"],
         "spouse": None
     },
-
+    "Arnold Emmersohn": {
+        "name": "Arnold Emmersohn",
+        "birth_date": "1995-03-03",
+        "death_date": None,
+        "parentF": ["Cornelia Emmersohn"],
+        "parentM": ["Otto Emmersohn"],
+        "spouse": None
+    },
     "Thomas Smith": {
         "name": "Thomas Smith",
         "birth_date": "1945-05-18",
