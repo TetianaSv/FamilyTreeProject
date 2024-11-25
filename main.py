@@ -7,6 +7,7 @@ from data import people_data
 from datetime import datetime
 from collections import defaultdict
 
+
 class Person: # Tetiana Svynar 001390358
 
     def __init__(self, name, birth_date=None, death_date=None, parentF=None, parentM=None, spouse=None):
@@ -548,3 +549,5 @@ result_text = Text(root, height=10, width=50)
 result_text.pack(pady=5)
 # Launch the main window Tkinter
 root.mainloop()
+
+
